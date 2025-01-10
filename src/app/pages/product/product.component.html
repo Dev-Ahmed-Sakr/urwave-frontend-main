@@ -1,0 +1,120 @@
+<div class="row add">
+    <div class="col-4">
+      <div class="example-button-container">
+        <a mat-fab extended (click)="createObject()" color="primary">
+          <mat-icon>add</mat-icon>
+          {{'products.Add Product'|translate}}
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  
+  <mat-card class="cardWithShadow">
+    <mat-card-content>
+  
+  
+      <div class="table-responsive">
+        <table mat-table [dataSource]="dataSource" class="w-100">
+  
+          <ng-container matColumnDef="Name">
+            <th mat-header-cell *matHeaderCellDef class="f-w-400 mat-subtitle-1 f-s-14 p-l-0">
+              {{'products.Name'|translate}}
+            </th>
+            <td mat-cell *matCellDef="let element" class="p-l-0">
+              <div class="d-flex align-items-center">
+                <!-- <img [src]="element.imagePath" alt="users" width="48" class="rounded" /> -->
+                <div class="m-l-12">
+                  <h6 class="mat-subtitle-1 text-truncate-2 f-s-15 f-w-600">
+                    {{ element.name }}
+                  </h6>
+                  <span class="f-s-14 mat-body-1">{{ element.description }}</span>
+                </div>
+              </div>
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="Description">
+            <th mat-header-cell *matHeaderCellDef class="f-w-400 mat-subtitle-1 f-s-14">
+               {{'products.descreption'|translate}}
+            </th>
+            <td mat-cell *matCellDef="let element" class="mat-body-1">
+              <h6 class="mat-subtitle-1 text-truncate-2 f-s-15 f-w-600">
+                {{ element.description }}
+              </h6>
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="Status">
+            <th mat-header-cell *matHeaderCellDef class="f-w-400 mat-subtitle-1 f-s-14">
+               {{'products.Status'|translate}}
+            </th>
+            <td mat-cell *matCellDef="let element" class="mat-body-1">
+              <h6 class="mat-subtitle-1 text-truncate-2 f-s-15 f-w-600">
+                {{ element.status }}
+              </h6>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="Price">
+            <th mat-header-cell *matHeaderCellDef class="f-w-400 mat-subtitle-1 f-s-14">
+               {{'products.rice'|translate}}
+            </th>
+            <td mat-cell *matCellDef="let element" class="mat-body-1">
+              <h6 class="mat-subtitle-1 text-truncate-2 f-s-15 f-w-600">
+                {{ element.price }}
+              </h6>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="StockQuantity">
+            <th mat-header-cell *matHeaderCellDef class="f-w-400 mat-subtitle-1 f-s-14">
+               {{'products.stockQuantity'|translate}}
+            </th>
+            <td mat-cell *matCellDef="let element" class="mat-body-1">
+              <h6 class="mat-subtitle-1 text-truncate-2 f-s-15 f-w-600">
+                {{ element.stockQuantity }}
+              </h6>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="ImageUrl">
+            <th mat-header-cell *matHeaderCellDef class="f-w-400 mat-subtitle-1 f-s-14">
+               {{'products.imageUrl'|translate}}
+            </th>
+            <td mat-cell *matCellDef="let element" class="mat-body-1">
+              <h6 class="mat-subtitle-1 text-truncate-2 f-s-15 f-w-600">
+                {{ element.imageUrl }}
+              </h6>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="CategoryName">
+            <th mat-header-cell *matHeaderCellDef class="f-w-400 mat-subtitle-1 f-s-14">
+               {{'products.categoryName'|translate}}
+            </th>
+            <td mat-cell *matCellDef="let element" class="mat-body-1">
+              <h6 class="mat-subtitle-1 text-truncate-2 f-s-15 f-w-600">
+                {{ element.categoryName }}
+              </h6>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef class="f-w-400 mat-subtitle-1 f-s-14">
+               {{'products.Actions'|translate}}
+            </th>
+            <td mat-cell *matCellDef="let element" class="actions">
+              <button mat-mini-fab extended color="primary" class="actions-buttons" (click)="Update(element)">
+                <mat-icon>edit</mat-icon>
+              </button>
+  
+              <button mat-mini-fab extended color="warn" class="actions-buttons delete" (click)="Delete(element)">
+                <mat-icon>delete_forever</mat-icon>
+              </button>
+  
+            </td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+  
+    </mat-card-content>
+  </mat-card>

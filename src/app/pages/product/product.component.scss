@@ -1,0 +1,20 @@
+.add {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+    text-align: end;
+  }
+  
+  .actions {
+    display: flex;
+  }
+  
+  .actions-buttons {
+    border-radius: 20%;
+    margin-inline-end: 5px;
+  }
+  
+  .delete {
+    background-color: red;
+  }
+  

@@ -1,0 +1,38 @@
+<form [formGroup]="form" style="min-width: 600px;">
+  <div fxLayout="row" fxLayoutAlign="end center" mat-dialog-title>
+    <button class="text-secondary" mat-dialog-close mat-icon-button type="button">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <mat-divider class="-mx-6 text-border"></mat-divider>
+  <mat-dialog-content fxLayout="column">
+    <div class="flex flex-col sm:flex-row">
+      <mat-form-field appearance="outline" class="col-md-4">
+        <mat-label>{{'categories.Name' | translate}}</mat-label>
+        <input cdkFocusInitial formControlName="name" matInput type="text">
+        <mat-error *ngIf="form.get('name').hasError('required')">
+          {{"messages.This field is required" |translate}}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-md-4">
+        <mat-label>{{'categories.Description' | translate}}</mat-label>
+        <input formControlName="description" matInput type="text">
+        <mat-error *ngIf="form.get('description').hasError('required')">
+          {{"messages.This field is required" |translate}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close type="button">{{'buttons.Cancel' | translate}} </button>
+    <button *ngIf="isCreateMode()" (click)="Submit()" color="primary" mat-raised-button [disabled]="form.invalid">
+      {{'buttons.Add' | translate}}
+    </button>
+    <button *ngIf="isUpdateMode()" (click)="Submit()" color="primary" mat-raised-button [disabled]="form.invalid">
+      {{'buttons.Edit' | translate}}
+    </button>
+  </mat-dialog-actions>
+</form>

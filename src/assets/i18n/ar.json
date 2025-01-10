@@ -1,0 +1,39 @@
+{
+  "sidenavbar": {
+    "navcaps": {
+      "Home": "الرئيسية",
+      "Categories": "الفئات",
+      "Products": "المنتجات"
+    },
+    "children": {
+      "Dashboard": "لوحة التحكم",
+      "Categories": "الفئات",
+      "Products": "المنتجات"
+    }
+  },
+  "categories": {
+    "Name": "الإسم",
+    "Description": "الوصف",
+    "Parent": "التابع",
+    "Status": "الحالة",
+    "Actions": "الإجراءات",
+    "Add Category": "إضافة"
+  },
+  "products": {
+    "Name": "الإسم",
+    "Description": "الوصف",
+    "Price": "السعر",
+    "StockQuantity": "الكمية",
+    "Status": "الحالة",
+    "ImageUrl": "الصورة",
+    "Actions": "الإجراءات",
+    "Category": "الفئة",
+    "Add Product": "إضافة منتج"
+  },
+  "buttons": {
+    "Add": "إضافة",
+    "Edit": "تعديل",
+    "Delete": "حذف",
+    "Cancel": "إلغاء"
+  }
+}

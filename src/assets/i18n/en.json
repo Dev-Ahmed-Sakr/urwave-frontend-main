@@ -1,0 +1,42 @@
+{
+  "sidenavbar": {
+    "navcaps": {
+      "Home": "Home",
+      "Categories": "Categories",
+      "Products": "Products",
+      "Ui Components": "Ui Components",
+      "Auth": "Auth",
+      "Extra": "Extra"
+    },
+    "children": {
+      "Dashboard": "Dashboard",
+      "Categories": "Categories",
+      "Products": "Products"
+    }
+  },
+  "categories": {
+    "Name": "Name",
+    "Description": "Description",
+    "Parent": "Parent",
+    "Status": "Status",
+    "Actions": "Actions",
+    "Add Category": "Add Category"
+  },
+  "products": {
+    "Name": "Name",
+    "Description": "Description",
+    "Price": "Price",
+    "StockQuantity": "StockQuantity",
+    "Status": "Status",
+    "ImageUrl": "ImageUrl",
+    "Actions": "Actions",
+    "Category": "Category",
+    "Add Product": "Add Product"
+  },
+  "buttons": {
+    "Add": "Add",
+    "Edit": "Edit",
+    "Delete": "Delete",
+    "Cancel": "Cancel"
+  }
+}

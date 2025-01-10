@@ -1,0 +1,29 @@
+@if(item.navCap && (checkIfRoleExists(item.roles) || !item.roles) && item.children) {
+<!-- @if(item.divider) {
+<span class="sidebar-divider"></span>
+} -->
+<div mat-subheader class='nav-caption' [ngClass]="(directionService.dir$ | async) == 'rtl' ?'lang-ar' :'lang-en'">
+  {{'sidenavbar.navcaps.'+ item.navCap |translate}}
+</div>
+
+@if (checkIfRoleExists(item.roles) || !item.roles) {
+@for (navItem of item.children; track $index) {
+<a mat-list-item (click)="onItemSelected(navItem)" [ngClass]="{
+              'mat-toolbar mat-primary activeMenu': navItem.route
+                ? router.isActive(navItem.route, true)
+                : false,
+            }" class="menu-list-item">
+  <span class="iconify routeIcon" matListItemIcon [attr.data-icon]="navItem.iconName"></span>
+
+  <span class="hide-menu">
+    {{'sidenavbar.children.'+ navItem.displayName|translate}}
+  </span>
+</a>
+}
+}
+
+}
+<!-- 
+@else {
+
+} -->

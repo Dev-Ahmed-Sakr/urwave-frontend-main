@@ -1,0 +1,83 @@
+<form [formGroup]="form" style="min-width: 600px;">
+    <div fxLayout="row" fxLayoutAlign="end center" mat-dialog-title>
+      <button class="text-secondary" mat-dialog-close mat-icon-button type="button">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <mat-divider class="-mx-6 text-border"></mat-divider>
+    <mat-dialog-content fxLayout="column">
+      <div class="flex flex-col sm:flex-row">
+        <mat-form-field appearance="outline" class="col-md-4">
+          <mat-label>{{'products.Name' | translate}}</mat-label>
+          <input cdkFocusInitial formControlName="name" matInput type="text">
+          <mat-error *ngIf="form.get('name').hasError('required')">
+            {{"messages.This field is required" |translate}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-md-4">
+          <mat-label>{{'products.Price' | translate}}</mat-label>
+          <input formControlName="price" matInput type="number">
+          <mat-error *ngIf="form.get('price').hasError('required')">
+            {{"messages.This field is required" |translate}}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-4">
+          <mat-label>{{'products.Description' | translate}}</mat-label>
+          <input formControlName="description" matInput type="text">
+          <mat-error *ngIf="form.get('description').hasError('required')">
+            {{"messages.This field is required" |translate}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="flex flex-col sm:flex-row">
+        <mat-form-field appearance="outline" class="col-md-4">
+          <mat-label>{{'products.Category' | translate}}</mat-label>
+          <mat-select formControlName="categoryId">
+            <mat-option *ngFor="let category of categories" [value]="category.id">
+              {{category.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('categoryId').hasError('required')">
+            {{"messages.This field is required" |translate}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-md-4">
+          <mat-label>{{'products.Status' | translate}}</mat-label>
+          <mat-select formControlName="status">
+            <mat-option *ngFor="let status of statuses" [value]="status">
+              {{status}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('status').hasError('required')">
+            {{"messages.This field is required" |translate}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-md-4">
+          <mat-label>{{'products.Image' | translate}}</mat-label>
+          <input formControlName="image" matInput type="text">
+          <mat-error *ngIf="form.get('imageUrl').hasError('required')">
+            {{"messages.This field is required" |translate}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-md-4">
+            <mat-label>{{'products.StockQuantity' | translate}}</mat-label>
+            <input formControlName="stockQuantity" matInput type="text">
+            <mat-error *ngIf="form.get('stockQuantity').hasError('required')">
+              {{"messages.This field is required" |translate}}
+            </mat-error>
+          </mat-form-field>
+      </div>
+  
+    </mat-dialog-content>
+  
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close type="button">{{'buttons.Cancel' | translate}} </button>
+      <button *ngIf="isCreateMode()" (click)="Submit()" color="primary" mat-raised-button [disabled]="form.invalid">
+        {{'buttons.Add' | translate}}
+      </button>
+      <button *ngIf="isUpdateMode()" (click)="Submit()" color="primary" mat-raised-button [disabled]="form.invalid">
+        {{'buttons.Edit' | translate}}
+      </button>
+    </mat-dialog-actions>
+  </form>
