@@ -34,7 +34,7 @@ import { ProductStatus } from 'src/base/enums/ProductStatus';
 })
 export class AddEditProductComponent extends BaseService implements OnInit {
   categories: any[] = [];
-  statuses = Object.entries(ProductStatus).filter(([key, value]) => typeof value === 'number');
+  statuses: { name: string; value: number }[] = [];
   form: FormGroup;
   constructor(
     @Inject(MAT_DIALOG_DATA) public defaults: any,
@@ -46,6 +46,8 @@ export class AddEditProductComponent extends BaseService implements OnInit {
 
   ngOnInit() {
     this.initForm();
+    this.GetCategories();
+    this.GetStatuses();
     if (this.defaults) {
       this.model = 'update';
       this.isUpdateMode();
@@ -129,6 +131,10 @@ export class AddEditProductComponent extends BaseService implements OnInit {
         complete: () => {},
       });
   }
-
-
+GetStatuses() {
+  // Convert enum to array for dropdown
+  this.statuses = Object.entries(ProductStatus)
+  .filter(([key, value]) => typeof value === 'number') // Exclude string keys
+  .map(([key, value]) => ({ name: key, value: value as number }));
+}
 }

@@ -22,7 +22,7 @@ import { takeUntil } from 'rxjs';
 export class ProductComponent extends BaseService implements OnInit {
   dataSource: any[] = [];
   displayedColumns: string[] = ['Name', 'Description', 'Status','Price',
-                               'CategoryName','StockQuantity','ImageUrl', 'Actions'];
+                               'Category','StockQuantity','ImageUrl', 'Actions'];
 
     constructor(
       public override injector: Injector,

@@ -8,6 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from 'src/app/material.module';
 import { BaseService } from 'src/app/services/business/base.service';
 import { CategoryController } from 'src/base/APIs/CategoryAPI';
+import { CategoryStatus } from 'src/base/enums/CategoryStatus';
 
 @Component({
   selector: 'app-add-edit-category',
@@ -20,6 +21,9 @@ import { CategoryController } from 'src/base/APIs/CategoryAPI';
   styleUrls: ['./add-edit-category.component.scss']
 })
 export class AddEditCategoryComponent extends BaseService implements OnInit {
+  statuses: { name: string; value: number }[] = [];
+    categories: any[] = [];
+
   form: FormGroup;
   constructor(
     @Inject(MAT_DIALOG_DATA) public defaults: any,
@@ -30,7 +34,10 @@ export class AddEditCategoryComponent extends BaseService implements OnInit {
   }
 
   ngOnInit() {
+
     this.initForm();
+    this.GetCategories();
+    this.GetStatuses();
     if (this.defaults) {
       this.model = 'update';
       this.isUpdateMode();
@@ -44,9 +51,11 @@ export class AddEditCategoryComponent extends BaseService implements OnInit {
 
   initForm() {
     this.form = this.fb.group({
-      id: new FormControl('0'),
+
+      id: new FormControl('00000000-0000-0000-0000-000000000000'),
       name: new FormControl(''),
       description: new FormControl(''),
+      ParentCategoryId: new FormControl('00000000-0000-0000-0000-000000000000'),
       status: new FormControl('Active'),
     });
   }
@@ -102,5 +111,28 @@ export class AddEditCategoryComponent extends BaseService implements OnInit {
       }
     });
   }
-
+  GetCategories() {
+    this.httpService.GET(CategoryController.GetCategories).subscribe({
+      next: (res: any) => {
+        console.log('API Response:', res); // Log raw response
+        this.categories = res.map((category: any) => ({
+          id: category.id,
+          name: category.name,
+        }));
+        console.log('Transformed Categories:', this.categories); // Log transformed categories
+      },
+      error: (error: Error) => {
+        console.error('Error fetching categories:', error);
+      },
+      complete: () => {
+        console.log('Category fetching completed.');
+      },
+    });
+  }
+  GetStatuses() {
+    // Convert enum to array for dropdown
+    this.statuses = Object.entries(CategoryStatus)
+    .filter(([key, value]) => typeof value === 'number') // Exclude string keys
+    .map(([key, value]) => ({ name: key, value: value as number }));
+  }
 }
